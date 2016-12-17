@@ -19,3 +19,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.DS_STORE
+
+# Ignore application configuration
+/config/application.yml
+.env
