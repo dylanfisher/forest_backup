@@ -1,0 +1,8 @@
+<li class="dd-item" data-id="<%= list_item['id'] %>">
+  <div class="dd-handle">Item <%= list_item['id'] %></div>
+  <% if list_item['children'] %>
+    <ol class="dd-list">
+      <%= render partial: 'list_item', collection: list_item['children'] %>
+    </ol>
+  <% end %>
+</li>

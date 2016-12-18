@@ -1,1 +1,23 @@
-<h1>The admin index</h1>
+<p id="notice"><%= notice %></p>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Resources</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @resources.each do |resource| %>
+        <tr>
+          <td><%= link_to resource.name.pluralize, polymorphic_path(resource) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Page', new_page_path, class: 'btn btn-primary' %>

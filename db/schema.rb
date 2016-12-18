@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217200300) do
+ActiveRecord::Schema.define(version: 20161217205353) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20161217200300) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "structure"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_menus_on_slug", unique: true
   end
 
   create_table "pages", force: :cascade do |t|
