@@ -32,3 +32,13 @@ $(document).on('click', '#menu__add-item-button', function() {
 
   $placeholder.append( itemHtml );
 });
+
+$(document).on('click', '.dd-input-expand, .dd-input-collapse', function() {
+  var $wrapper = $(this).closest('.dd-item');
+
+  if ( $wrapper.hasClass('dd-expanded') ) {
+    $wrapper.removeClass('dd-expanded');
+  } else {
+    $wrapper.addClass('dd-expanded');
+  }
+});
