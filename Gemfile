@@ -38,6 +38,8 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   # Attach comments to ActiveRecord's SQL queries https://github.com/basecamp/marginalia
   gem 'marginalia'
+
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

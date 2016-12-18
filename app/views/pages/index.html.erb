@@ -2,10 +2,13 @@
 
 <h1>Pages</h1>
 
+<%= paginate @pages %>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Title</th>
         <th>Slug</th>
         <th>Description</th>
@@ -16,6 +19,7 @@
     <tbody>
       <% @pages.each do |page| %>
         <tr>
+          <td><%= page.id %></td>
           <td><%= page.title %></td>
           <td><%= page.slug %></td>
           <td><%= page.description %></td>

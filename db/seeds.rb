@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if Rails.env.development?
+  page_count = Page.count
+  if page_count < 100
+    (100 - page_count).times do
+      Page.create(
+        title: Faker::Lorem.words((1..10).to_a.sample).join(' ').titleize,
+        description: Faker::Lorem.paragraph
+      )
+    end
+  end
+end
