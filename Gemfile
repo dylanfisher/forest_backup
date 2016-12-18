@@ -27,6 +27,7 @@ gem 'devise'
 gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
+gem 'has_scope'
 
 group :development do
   gem 'listen', '~> 3.0.5'

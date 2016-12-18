@@ -1,12 +1,17 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
+  has_scope :by_id
+  has_scope :by_title
+  has_scope :by_slug
+  has_scope :by_created_at
+
   layout 'admin', except: [:show]
 
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.page params[:page]
+    @pages = apply_scopes(Page).by_title.page params[:page]
   end
 
   # GET /pages/1
