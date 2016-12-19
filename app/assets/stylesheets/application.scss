@@ -2,6 +2,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+// Partials
+@import 'variables';
+
 // Admin
 @import 'admin/**/*';
 
