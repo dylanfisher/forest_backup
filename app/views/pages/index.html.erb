@@ -1,18 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pages</h1>
-
-<%= paginate @pages %>
+<div class="admin-header">
+  <div id="notice"><%= notice %></div>
+  <div class="well">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Pages <span class="badge"><%= number_with_delimiter Page.count %></span></h1>
+      </div>
+      <div class="col-sm-8 text-right">
+        <%= link_to 'New Page', new_page_path, class: 'btn btn-success' %>
+      </div>
+      <div class="col-sm-12">
+        <%= paginate @pages %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= link_to 'ID', pages_path(by_id: (params[:by_id] == 'desc' ? :asc : :desc)) %></th>
-        <th><%= link_to 'Title', pages_path(by_title: (params[:by_title] == 'asc' ? :desc : :asc)) %></th>
-        <th><%= link_to 'Slug', pages_path(by_slug: (params[:by_slug] == 'asc' ? :desc : :asc)) %></th>
+        <th><%= table_sorter title: 'ID', path: pages_path, scope: :by_id, default_order: :desc %></th>
+        <th><%= table_sorter title: 'Title', path: pages_path, scope: :by_title, default_order: :asc %></th>
+        <th><%= table_sorter title: 'Slug', path: pages_path, scope: :by_slug, default_order: :asc %></th>
         <th>Description</th>
-        <th><%= link_to 'Created&nbsp;at'.html_safe, pages_path(by_created_at: (params[:by_created_at] == 'desc' ? :asc : :desc)) %></th>
+        <th><%= table_sorter title: 'Created&nbsp;at'.html_safe, path: pages_path, scope: :by_created_at, default_order: :desc %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -25,15 +36,13 @@
           <td><%= page.slug %></td>
           <td><%= page.description %></td>
           <td><%= page.created_at.to_formatted_s(:short) %></td>
-          <td width="1"><%= link_to 'Show', page, class: 'btn btn-xs btn-default', role: 'button' %></td>
-          <td width="1"><%= link_to 'Edit', edit_page_path(page), class: 'btn btn-xs btn-default', role: 'button' %></td>
-          <td width="1"><%= link_to 'Destroy', page, method: :delete, class: 'btn btn-xs btn-default', role: 'button', data: { confirm: 'Are you sure?' } %></td>
+          <td width="1"><%= link_to 'Show', page, class: 'btn btn-xs btn-primary', role: 'button' %></td>
+          <td width="1"><%= link_to 'Edit', edit_page_path(page), class: 'btn btn-xs btn-info', role: 'button' %></td>
+          <td width="1"><%= link_to 'Destroy', page, method: :delete, class: 'btn btn-xs btn-danger', role: 'button', data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 
-<br>
-
-<%= link_to 'New Page', new_page_path, class: 'btn btn-primary' %>
+<%= paginate @pages %>

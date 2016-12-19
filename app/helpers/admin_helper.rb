@@ -1,2 +1,15 @@
 module AdminHelper
+  def table_sorter(options = {})
+    title = options.fetch :title
+    path = options.fetch :path
+    scope = options.fetch :scope
+    default_order = options.fetch :default_order, :asc
+    opposite_order = default_order == :asc ? :desc : :asc
+    is_default_order = params[scope]&.to_sym == default_order
+    active_class = params[scope].present? ? 'active ' : ''
+
+    link_to title,
+      pages_path("#{scope}": (is_default_order ? opposite_order : default_order)),
+      class: "#{active_class}#{(is_default_order ? 'order--default' : 'order--reverse')}"
+  end
 end

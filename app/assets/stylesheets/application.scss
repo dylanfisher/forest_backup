@@ -1,3 +1,9 @@
+// Bootstrap
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+// Admin
+@import 'admin/**/*';
+
+// Vendor
 @import 'vendor/**/*';
