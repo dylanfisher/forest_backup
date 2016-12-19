@@ -1,4 +1,9 @@
 module AdminHelper
+  def show_admin_navigation?
+    # TODO: current_user policy check and potentially some settings check
+    true
+  end
+
   def table_sorter(options = {})
     title = options.fetch :title
     path = options.fetch :path
@@ -9,7 +14,7 @@ module AdminHelper
     active_class = params[scope].present? ? 'active ' : ''
 
     link_to title,
-      pages_path("#{scope}": (is_default_order ? opposite_order : default_order)),
+      send(path, "#{scope}": (is_default_order ? opposite_order : default_order)),
       class: "#{active_class}#{(is_default_order ? 'order--default' : 'order--reverse')}"
   end
 end

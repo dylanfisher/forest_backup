@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= render 'admin/navigation' if show_admin_navigation? %>
     <div class="container-fluid">
       <%= yield %>
     </div>

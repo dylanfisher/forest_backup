@@ -9,14 +9,11 @@ Rails.application.routes.draw do
 
   # Admin Resources
   scope :admin do
-    get 'settings/:id', to: 'settings#edit', as: 'setting'
-    patch 'settings/:id', to: 'settings#edit'
+    resources :settings
     resources :menus, concerns: :paginatable
     resources :pages, concerns: :paginatable
   end
 
-
   # Root
-  # TODO: temporary root path
-  root to: 'admin#index'
+  root to: 'public#index'
 end

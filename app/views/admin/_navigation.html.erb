@@ -7,15 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Forest', admin_path, class: 'navbar-brand' %>
+      <%= link_to 'Admin', admin_path, class: 'navbar-brand' %>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-          <%= link_to 'Pages', pages_path %>
-        </li>
-        <li><a href="#">Link</a></li>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Pages', pages_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Appearance <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -36,15 +34,14 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Settings', setting_path(id: :general) %></li>
+        <li><%= link_to 'Settings', settings_path %></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current User <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">User Name</a></li>
+            <li><a href="#">Edit My Profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Log Out</a></li>
           </ul>
         </li>
       </ul>
