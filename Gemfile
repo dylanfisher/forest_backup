@@ -28,6 +28,8 @@ gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem 'has_scope'
+gem 'paperclip', '~> 5.0.0'
+gem 'jquery-fileupload-rails'
 
 group :development do
   gem 'listen', '~> 3.0.5'

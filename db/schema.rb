@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219045555) do
+ActiveRecord::Schema.define(version: 20161219231741) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(version: 20161219045555) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "media_items", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "caption"
+    t.string   "alternative_text"
+    t.text     "description"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_media_items_on_attachable_type_and_attachable_id"
+    t.index ["slug"], name: "index_media_items_on_slug", unique: true
   end
 
   create_table "menus", force: :cascade do |t|

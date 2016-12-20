@@ -19,7 +19,7 @@
       <% @resources.each_with_index do |resource, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= link_to resource.name.pluralize, polymorphic_path(resource) %></td>
+          <td><%= link_to resource.model_name.human.titleize.pluralize, polymorphic_path(resource) %></td>
           <td><%= number_with_delimiter resource.count %></td>
         </tr>
       <% end %>

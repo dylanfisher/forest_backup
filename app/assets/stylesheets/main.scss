@@ -2,8 +2,11 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-// Partials
+// Modules
 @import 'variables';
+
+// Base
+@import 'base/foundation';
 
 // Admin
 @import 'admin/**/*';
