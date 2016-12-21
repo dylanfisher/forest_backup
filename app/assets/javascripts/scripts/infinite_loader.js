@@ -15,12 +15,13 @@ App.pageLoad.push(function() {
       if ( $infiniteLoader.data('disabled') ) return;
 
       if ( nextPageLinkOffset - App.scrollTop < scrollOffsetPoint ) {
-        $nextPageLink.trigger('click');
+        $nextPageLink.trigger('click').after('<div class="loading-indicator col-sm-12 text-center">Loading...</div>');
 
         $.get(nextPageUrl, function(data) {
           var content = $(data).find('[data-infinite-load]').html();
 
           $nextPageLink.remove();
+          $infiniteLoader.find('.loading-indicator').remove();
           $infiniteLoader.append(content);
           $nextPageLink = $infiniteLoader.find('[rel="next"]');
 

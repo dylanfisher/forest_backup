@@ -3,6 +3,8 @@ class MediaItemsController < ApplicationController
 
   layout 'admin', except: [:show]
 
+  has_scope :by_date
+
   # GET /media_items
   def index
     @media_items = apply_scopes(MediaItem.all).by_id.page(params[:page]).per(60)

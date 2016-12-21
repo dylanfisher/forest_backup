@@ -5,10 +5,25 @@ class MediaItem < ApplicationRecord
   has_attached_file :attachment, styles: { large: '1200x1200>', medium: '600x600>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\z/
 
-  # Admin filter scopes
   scope :by_id, -> (orderer = :desc) { order(id: orderer) }
+  scope :by_date, -> (date) {
+    begin
+      date = Date.parse(date)
+      where('created_at >= ? AND created_at <= ?', date.beginning_of_month, date.end_of_month)
+    rescue ArgumentError => e
+      date = nil
+    end
+  }
+
+  def self.dates_for_filter
+    self.grouped_by_year_month.collect { |x| [x.created_at.strftime('%B %Y'), x.created_at.strftime('%d-%m-%Y')] }
+  end
 
   private
+
+    def self.grouped_by_year_month
+      self.group("strftime('%Y%m', created_at)").distinct
+    end
 
     def slug_candidates
       [
