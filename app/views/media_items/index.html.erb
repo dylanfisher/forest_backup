@@ -1,22 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Media Items</h1>
+<div class="admin-header">
+  <div id="notice"><%= notice %></div>
+  <div class="well">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>Media Library</h1>
+      </div>
+      <div class="col-sm-4 text-right">
+        <%= link_to 'New Media Item', new_media_item_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="media-gallery">
-  <div class="row" data-infinite-load>
+  <div class="row small-gutters" data-infinite-load>
     <% @media_items.each do |media_item| %>
       <div class="col-xs-4 col-sm-3 col-md-2">
-        <div><%= media_item.id %></div>
         <% attachment_or_placeholder_url = media_item.attachment.exists? ? media_item.attachment.url(:medium) : 'https://placeholdit.imgix.net/~text?w=600&h=400' %>
-        <%= link_to edit_media_item_path(media_item) do %>
-          <%= image_tag attachment_or_placeholder_url, class: 'media-gallery-item img-rounded' %>
+        <%= link_to edit_media_item_path(media_item), class: 'media-gallery-link' do %>
+          <%= content_tag :div, '', class: 'media-gallery-item img-rounded', style: "background-image: url(#{image_url attachment_or_placeholder_url})" %>
         <% end %>
       </div>
     <% end %>
     <%= link_to_next_page @media_items, 'Next page' %>
   </div>
 </div>
-
-<br>
-
-<%= link_to 'New Media Item', new_media_item_path %>

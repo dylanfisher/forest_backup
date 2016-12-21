@@ -5,12 +5,16 @@ App.pageLoad.push(function() {
   if ( $infiniteLoader.length && $nextPageLink.length ) {
     var nextPageUrl = $nextPageLink.attr('href');
     var nextPageLinkOffset = $nextPageLink.offset().top;
-    var scrollOffsetPoint = App.scrollTop < App.windowHeight * 2;
+    var scrollOffsetPoint = App.windowHeight * 2;
+
+    $(window).on('resize.infiniteLoader', function() {
+      scrollOffsetPoint = App.windowHeight * 2;
+    });
 
     $(window).on('scroll.infiniteLoader', function() {
       if ( $infiniteLoader.data('disabled') ) return;
 
-      if ( nextPageLinkOffset - scrollOffsetPoint ) {
+      if ( nextPageLinkOffset - App.scrollTop < scrollOffsetPoint ) {
         $nextPageLink.trigger('click');
 
         $.get(nextPageUrl, function(data) {
@@ -26,7 +30,7 @@ App.pageLoad.push(function() {
             $infiniteLoader.data('disabled', false);
             $(window).trigger('scroll.infiniteLoader');
           } else {
-            $(window).off('scroll.infiniteLoader');
+            $(window).off('scroll.infiniteLoader resize.infiniteLoader');
           }
         });
 
@@ -34,7 +38,7 @@ App.pageLoad.push(function() {
       }
     });
   } else {
-    $(window).off('scroll.infiniteLoader');
+    $(window).off('scroll.infiniteLoader resize.infiniteLoader');
   }
 
   $(window).trigger('scroll.infiniteLoader');

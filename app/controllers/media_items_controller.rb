@@ -5,7 +5,7 @@ class MediaItemsController < ApplicationController
 
   # GET /media_items
   def index
-    @media_items = apply_scopes(MediaItem.all).page(params[:page]).per(60)
+    @media_items = apply_scopes(MediaItem.all).by_id.page(params[:page]).per(60)
   end
 
   # GET /media_items/1
@@ -50,7 +50,7 @@ class MediaItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_media_item
-      @media_item = MediaItem.find(params[:id])
+      @media_item = MediaItem.friendly.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
