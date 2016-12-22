@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload
+//= require jquery-fileupload/basic-plus
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree ./vendor

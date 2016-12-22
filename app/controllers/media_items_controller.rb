@@ -27,10 +27,14 @@ class MediaItemsController < ApplicationController
   def create
     @media_item = MediaItem.new(media_item_params)
 
-    if @media_item.save
-      redirect_to @media_item, notice: 'Media item was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @media_item.save
+        format.html { redirect_to @media_item, notice: 'Media item was successfully created.'}
+        format.json { render json: { files: [@media_item.to_jq_upload]}, status: :created, location: @media_item }
+      else
+        format.html { render :new }
+        format.json { render json: @media_item.errors, status: :unprocessable_entity }
+      end
     end
   end
 

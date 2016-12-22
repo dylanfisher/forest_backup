@@ -1,4 +1,6 @@
 class MediaItem < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -18,6 +20,17 @@ class MediaItem < ApplicationRecord
   def self.dates_for_filter
     self.grouped_by_year_month.collect { |x| [x.created_at.strftime('%B %Y'), x.created_at.strftime('%d-%m-%Y')] }
   end
+
+  def to_jq_upload
+    {
+      'name': read_attribute(:attachment_name),
+      'size': attachment.size,
+      'url': edit_media_item_path(self),
+      'thumbnail_url': attachment.url(:medium),
+      'delete_url': media_item_path(id: id),
+      'delete_type': 'DELETE'
+    }
+    end
 
   private
 
