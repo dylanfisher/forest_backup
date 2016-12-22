@@ -7,7 +7,13 @@ class MediaItemsController < ApplicationController
 
   # GET /media_items
   def index
-    @media_items = apply_scopes(MediaItem.all).by_id.page(params[:page]).per(60)
+    @media_items = apply_scopes(MediaItem.all).by_id.page(params[:page]).per(36)
+
+    if params[:layout].blank? || params[:layout] != 'list'
+      @layout = :grid
+    else
+      @layout = :list
+    end
   end
 
   # GET /media_items/1

@@ -15,7 +15,7 @@ App.pageLoad.push(function() {
       if ( $infiniteLoader.data('disabled') ) return;
 
       if ( nextPageLinkOffset - App.scrollTop < scrollOffsetPoint ) {
-        $nextPageLink.trigger('click').after('<div class="loading-indicator col-sm-12 text-center">Loading...</div>');
+        $nextPageLink.trigger('click').after('<div class="loading-indicator col-sm-12 text-center"><span class="glyphicon glyphicon-hourglass"></span> Loading...</div>');
 
         $.get(nextPageUrl, function(data) {
           var content = $(data).find('[data-infinite-load]').html();

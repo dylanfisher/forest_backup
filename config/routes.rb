@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :media_items
   # Concerns
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
   # Admin Resources
   scope :admin do
     resources :settings
+    resources :media_items
     resources :menus, concerns: :paginatable
     resources :pages, concerns: :paginatable
   end
