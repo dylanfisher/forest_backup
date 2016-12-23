@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html class="<%= @html_classes %>">
+<html class="<%= @html_classes %> public">
   <head>
-    <title>Forest</title>
-    <%= csrf_meta_tags %>
+    <%= render 'layouts/shared_head' %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

@@ -1,19 +1,5 @@
-<p id="notice"><%= notice %></p>
+<% content_for :page_description, @page.description if @page.description.present? %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @page.slug %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @page.description %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<% if @page.title.present? %>
+  <h1><%= @page.title %></h1>
+<% end %>
