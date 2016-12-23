@@ -47,18 +47,27 @@
       <%= link_to_next_page @media_items, 'Next page', class: 'infinite-load__next-page-link' %>
     </div>
   <% else %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th width="1"></th>
-          <th>File</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render partial: 'media_item_list_layout', collection: @media_items, as: :media_item %>
-      </tbody>
-    </table>
+    <%= form_tag update_multiple_media_items_path, method: :post, class: 'form-inline' do %>
+      <select name="bulk_actions" id="bulk_actions" class="form-control">
+        <option value="name">Bulk Actions</option>
+        <option value="delete">Delete Permanently</option>
+      </select>
+
+      <%= submit_tag 'Apply', class: 'btn btn-default' %>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="1"><%= check_box_tag 'select_all' %></th>
+            <th>File</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%= render partial: 'media_item_list_layout', collection: @media_items, as: :media_item %>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
 </div>
 

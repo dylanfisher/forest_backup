@@ -53,6 +53,21 @@ class MediaItemsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /media_items
+  def update_multiple
+    if params['selected']&.any?
+      if params[:bulk_actions] == 'delete'
+        MediaItem.where(id: params[:selected]).destroy_all
+        notice = 'Media items were successfully destroyed.'
+      else
+        notice = 'Please select a bulk action.'
+      end
+    else
+      notice = 'Please select a media item.'
+    end
+    redirect_to media_items_url, notice: notice
+  end
+
   # DELETE /media_items/1
   def destroy
     @media_item.destroy
@@ -67,6 +82,6 @@ class MediaItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def media_item_params
-      params.require(:media_item).permit(:title, :slug, :caption, :alternative_text, :description, :attachment)
+      params.require(:media_item).permit(:title, :slug, :caption, :alternative_text, :description, :attachment, :selected)
     end
 end
