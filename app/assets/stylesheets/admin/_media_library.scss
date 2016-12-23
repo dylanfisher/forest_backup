@@ -9,3 +9,19 @@
   background-size: cover;
   background-position: center;
 }
+
+.media-library-image--list {
+  margin-bottom: 0;
+}
+
+.media-library__list-actions {
+  display: none;
+}
+
+.media-library__list-table-row {
+  &:hover {
+    .media-library__list-actions {
+      display: block;
+    }
+  }
+}
