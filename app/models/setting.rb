@@ -8,15 +8,14 @@ class Setting < ApplicationRecord
   scope :by_created_at, -> (orderer = :desc) { order(created_at: orderer) }
 
   def self.for(title)
-    self.settings.friendly.find title.to_s
+    self.settings.select { |setting| setting.slug == title.to_s }.first
   end
 
   private
 
     def self.settings
-      # TODO: settings cache_key
-      Rails.cache.fetch('settings', expires_in: 1.hour) do
-        Setting.all
+      @settings ||= Rails.cache.fetch Setting.all.cache_key do
+        Setting.all.to_a
       end
     end
 

@@ -4,7 +4,7 @@ module MetaHelper
   end
 
   def site_title
-    Setting.friendly.find('site-title')&.value || default_site_title
+    Setting.for('site-title')&.value || default_site_title
   end
 
   def page_description
@@ -12,7 +12,7 @@ module MetaHelper
   end
 
   def site_description
-    Setting.friendly.find('description')&.value || default_site_description
+    Setting.for('description')&.value || default_site_description
   end
 
   private
