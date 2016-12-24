@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   has_scope :by_title
   has_scope :by_slug
   has_scope :by_created_at
+  has_scope :search
 
   layout 'admin', except: [:show]
 
