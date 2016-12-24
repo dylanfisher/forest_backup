@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection
   end
 
+  # Root
+  root to: 'public#index'
+
   # Admin
   get 'admin', to: 'admin#index'
 
   # Admin Resources
   scope :admin do
-    resources :settings
     resources :media_items do
       collection do
         post 'update_multiple'
@@ -17,8 +19,10 @@ Rails.application.routes.draw do
     end
     resources :menus, concerns: :paginatable
     resources :pages, concerns: :paginatable
+    resources :settings
+    resources :users
   end
 
-  # Root
-  root to: 'public#index'
+  # Devise
+  devise_for :users
 end
