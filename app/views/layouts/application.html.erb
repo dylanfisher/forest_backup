@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="<%= @html_classes %> public">
+<html>
   <head>
     <%= render 'layouts/shared_head' %>
 
@@ -7,7 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= @body_classes %> public">
     <%= render 'admin/navigation' if show_admin_navigation? %>
     <div class="container-fluid">
       <%= yield %>
