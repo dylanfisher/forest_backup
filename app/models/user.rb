@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_and_belongs_to_many :user_groups
+
   scope :by_id, -> (orderer = :desc) { order(id: orderer) }
   scope :by_email, -> (orderer = :asc) { order(email: orderer) }
   scope :by_first_name, -> (orderer = :asc) { order(first_name: orderer) }

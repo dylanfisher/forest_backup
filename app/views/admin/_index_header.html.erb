@@ -6,7 +6,13 @@
   <div class="well">
     <div class="row">
       <div class="col-sm-8">
-        <h1><%= model_names.plural.titleize %> <span class="badge"><%= number_with_delimiter records.total_count %></span></h1>
+        <h1 class="admin-header__item"><%= model_names.plural.titleize %> <span class="badge"><%= number_with_delimiter records.total_count %></span></h1>
+        <%= form_tag send("#{model_names.route_key}_path"), class: 'form-inline admin-header__item', method: :get, enforce_utf8: false do %>
+          <div class="form-group">
+            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+            <%= submit_tag 'Submit', name: nil, class: 'btn btn-default' %>
+          </div>
+        <% end %>
       </div>
       <div class="col-sm-4 text-right">
         <%= link_to "New #{model_names.singular}", send("new_#{model_names.singular_route_key}_path"), class: 'btn btn-success' %>
@@ -15,12 +21,6 @@
         <%= paginate records %>
       </div>
       <div class="col-sm-6 text-right admin-header__search">
-        <%= form_tag send("#{model_names.route_key}_path"), class: 'form-inline', method: :get, enforce_utf8: false do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
-            <%= submit_tag 'Submit', name: nil, class: 'btn btn-default' %>
-          </div>
-        <% end %>
       </div>
     </div>
   </div>

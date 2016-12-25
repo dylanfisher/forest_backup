@@ -3,6 +3,6 @@ class AdminController < ApplicationController
 
   def index
     # TODO: authorization/permissions
-    @resources = [Page, Menu, MediaItem, User]
+    @resources = [Page, Menu, MediaItem, User, UserGroup]
   end
 end

@@ -21,13 +21,16 @@ Rails.application.routes.draw do
     resources :pages, concerns: :paginatable
     resources :settings
     resources :users
-  end
+    resources :user_groups
+    end
 
   # Devise
   devise_for :users
 
   devise_scope :user do
     get 'admin', to: 'devise/sessions#new'
+    get 'login', to: 'devise/sessions#new'
+    get 'logout', to: 'devise/sessions#destroy'
   end
 
   get ':id', to: 'pages#show'
