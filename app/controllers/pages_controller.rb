@@ -1,13 +1,9 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
-
-  has_scope :by_id
-  has_scope :by_title
-  has_scope :by_slug
-  has_scope :by_created_at
-  has_scope :search
+  include FilterControllerScopes
 
   layout 'admin', except: [:show]
+
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages
   # GET /pages.json
@@ -73,6 +69,12 @@ class PagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = Page.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      if action_name == 'show' && Rails.env.production?
+        redirect_to root_url, flash: { error: 'Record not found.' }
+      else
+        raise ActiveRecord::RecordNotFound
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,7 +1,7 @@
 module AdminHelper
   def show_admin_navigation?
     # TODO: current_user policy check and potentially some settings check
-    true
+    current_user
   end
 
   def table_sorter(options = {})

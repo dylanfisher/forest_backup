@@ -1,27 +1,4 @@
-<div class="admin-header">
-  <div id="notice"><%= notice %></div>
-  <div class="well">
-    <div class="row">
-      <div class="col-sm-8">
-        <h1>Pages <span class="badge"><%= number_with_delimiter @pages.total_count %></span></h1>
-      </div>
-      <div class="col-sm-4 text-right">
-        <%= link_to 'New Page', new_page_path, class: 'btn btn-success' %>
-      </div>
-      <div class="col-sm-6">
-        <%= paginate @pages %>
-      </div>
-      <div class="col-sm-6 text-right admin-header__search">
-        <%= form_tag pages_path, class: 'form-inline', method: :get, enforce_utf8: false do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
-            <%= submit_tag 'Submit', name: nil, class: 'btn btn-default' %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'admin/index_header', records: @pages, model_name: 'Page' %>
 
 <div class="table-responsive">
   <table class="table table-striped">
