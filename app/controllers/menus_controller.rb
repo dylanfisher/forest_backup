@@ -6,6 +6,7 @@ class MenusController < ApplicationController
   # GET /menus
   def index
     @menus = Menu.all
+    authorize @menus
   end
 
   # GET /menus/1
@@ -15,15 +16,18 @@ class MenusController < ApplicationController
   # GET /menus/new
   def new
     @menu = Menu.new
+    authorize @menu
   end
 
   # GET /menus/1/edit
   def edit
+    authorize @menu
   end
 
   # POST /menus
   def create
     @menu = Menu.new(menu_params)
+    authorize @menu
 
     if @menu.save
       redirect_to @menu, notice: 'Menu was successfully created.'
@@ -34,6 +38,7 @@ class MenusController < ApplicationController
 
   # PATCH/PUT /menus/1
   def update
+    authorize @menu
     if @menu.update(menu_params)
       redirect_to @menu, notice: 'Menu was successfully updated.'
     else
@@ -43,6 +48,7 @@ class MenusController < ApplicationController
 
   # DELETE /menus/1
   def destroy
+    authorize @menu
     @menu.destroy
     redirect_to menus_url, notice: 'Menu was successfully destroyed.'
   end

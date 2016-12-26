@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
   protect_from_forgery with: :exception
   before_action :set_body_classes, :set_page_title
   before_action :authentication_check
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
@@ -19,6 +23,14 @@ class ApplicationController < ActionController::Base
     def authentication_check
       unless controller_name == 'public' || action_name == 'show'
         authenticate_user!
+      end
+    end
+
+    def user_not_authorized
+      if Rails.env.production?
+        redirect_to(root_path)
+      else
+        raise Pundit::NotAuthorizedError
       end
     end
 end

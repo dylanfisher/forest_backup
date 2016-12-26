@@ -26,4 +26,12 @@ class User < ApplicationRecord
   def name
     [first_name, last_name].reject(&:blank?).join(' ')
   end
+
+  def admin?
+    in_group? 'admin'
+  end
+
+  def in_group?(name)
+    user_groups.any? { |ug| ug.name == name }
+  end
 end

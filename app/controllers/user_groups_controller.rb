@@ -4,6 +4,7 @@ class UserGroupsController < ApplicationController
   # GET /user_groups
   def index
     @user_groups = UserGroup.all
+    authorize @user_groups
   end
 
   # GET /user_groups/1
@@ -13,15 +14,18 @@ class UserGroupsController < ApplicationController
   # GET /user_groups/new
   def new
     @user_group = UserGroup.new
+    authorize @user_group
   end
 
   # GET /user_groups/1/edit
   def edit
+    authorize @user_group
   end
 
   # POST /user_groups
   def create
     @user_group = UserGroup.new(user_group_params)
+    authorize @user_group
 
     if @user_group.save
       redirect_to @user_group, notice: 'User group was successfully created.'
@@ -32,6 +36,7 @@ class UserGroupsController < ApplicationController
 
   # PATCH/PUT /user_groups/1
   def update
+    authorize @user_group
     if @user_group.update(user_group_params)
       redirect_to @user_group, notice: 'User group was successfully updated.'
     else
@@ -41,6 +46,7 @@ class UserGroupsController < ApplicationController
 
   # DELETE /user_groups/1
   def destroy
+    authorize @user_group
     @user_group.destroy
     redirect_to user_groups_url, notice: 'User group was successfully destroyed.'
   end

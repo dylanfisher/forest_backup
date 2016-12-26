@@ -11,6 +11,7 @@ class SettingsController < ApplicationController
   # GET /settings
   def index
     @settings = apply_scopes(Setting.all).by_id.page params[:page]
+    authorize @settings
   end
 
   # GET /settings/1
@@ -20,15 +21,18 @@ class SettingsController < ApplicationController
   # GET /settings/new
   # def new
   #   @setting = Setting.new
+  #   authorize @setting
   # end
 
   # GET /settings/1/edit
   def edit
+    authorize @setting
   end
 
   # POST /settings
   def create
     @setting = Setting.new(setting_params)
+    authorize @setting
 
     if @setting.save
       redirect_to @setting, notice: 'Setting was successfully created.'
@@ -39,6 +43,7 @@ class SettingsController < ApplicationController
 
   # PATCH/PUT /settings/1
   def update
+    authorize @setting
     if @setting.update(setting_params)
       redirect_to settings_path, notice: 'Setting was successfully updated.'
     else
@@ -48,6 +53,7 @@ class SettingsController < ApplicationController
 
   # DELETE /settings/1
   # def destroy
+  #   authorize @setting
   #   @setting.destroy
   #   redirect_to settings_url, notice: 'Setting was successfully destroyed.'
   # end
