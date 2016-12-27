@@ -11,5 +11,5 @@
  *= require_self
  *= require jquery.fileupload
  *= require jquery.fileupload-ui
- *= require main
+ *= require main_admin
 */

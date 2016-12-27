@@ -3,12 +3,13 @@
   <head>
     <%= render 'layouts/shared_head' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application_public', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application_public', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="<%= @body_classes %> public">
-    <%= render 'admin/navigation' if show_admin_navigation? %>
+    <%# TODO: admin nav bar styles in public %>
+    <%#= render 'admin/navigation' if show_admin_navigation? %>
     <div class="container-fluid">
       <%= yield %>
     </div>
