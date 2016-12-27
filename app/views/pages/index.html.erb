@@ -1,9 +1,16 @@
+<% content_for :index_header_body do %>
+  <%= dropdown_select_form url: pages_path,
+    id: 'by_status',
+    select_options: Page.statuses.keys.to_a.collect{ |x| [x.titleize, x] },
+    title: 'All Statuses' %>
+<% end %>
 <%= render 'admin/index_header', records: @pages, model_name: 'Page' %>
 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
+        <th></th>
         <th><%= table_sorter title: 'ID', path: :pages_path, scope: :by_id, default_order: :desc %></th>
         <th><%= table_sorter title: 'Title', path: :pages_path, scope: :by_title, default_order: :asc %></th>
         <th><%= table_sorter title: 'Slug', path: :pages_path, scope: :by_slug, default_order: :asc %></th>
@@ -16,6 +23,7 @@
     <tbody>
       <% @pages.each do |page| %>
         <tr>
+          <td><%= status_indicator page %></td>
           <td><%= page.id %></td>
           <td><%= page.title %></td>
           <td><%= page.slug %></td>

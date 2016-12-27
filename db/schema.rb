@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225212605) do
+ActiveRecord::Schema.define(version: 20161227212941) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 20161225212605) do
     t.string   "title"
     t.string   "slug"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "status",      default: 1, null: false
     t.index ["slug"], name: "index_pages_on_slug", unique: true
+    t.index ["status"], name: "index_pages_on_status"
   end
 
   create_table "posts", force: :cascade do |t|

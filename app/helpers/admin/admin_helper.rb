@@ -1,4 +1,4 @@
-module AdminHelper
+module Admin::AdminHelper
   def show_admin_navigation?
     # TODO: current_user policy check and potentially some settings check
     current_user
@@ -16,5 +16,11 @@ module AdminHelper
     link_to title,
       send(path, "#{scope}": (is_default_order ? opposite_order : default_order)),
       class: "#{active_class}#{(is_default_order ? 'order--default' : 'order--reverse')}"
+  end
+
+  def admin_navbar_class
+    if @page && !@page.published?
+      'bg-warning'
+    end
   end
 end

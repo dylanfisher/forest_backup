@@ -17,6 +17,11 @@
       <div class="col-sm-4 text-right">
         <%= link_to "New #{model_names.singular}", send("new_#{model_names.singular_route_key}_path"), class: 'btn btn-success' %>
       </div>
+      <% if content_for? :index_header_body %>
+        <div class="admin-header__body col-sm-12">
+          <%= content_for :index_header_body %>
+        </div>
+      <% end %>
       <div class="col-sm-6">
         <%= paginate records %>
       </div>

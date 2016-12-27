@@ -5,6 +5,8 @@ class PagesController < ApplicationController
 
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
+  has_scope :by_status
+
   # GET /pages
   # GET /pages.json
   def index
@@ -15,6 +17,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    authorize @page
   end
 
   # GET /pages/new
@@ -85,6 +88,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :slug, :description)
+      params.require(:page).permit(:title, :slug, :description, :status)
     end
 end
