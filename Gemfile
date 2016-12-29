@@ -30,6 +30,7 @@ gem 'simple_form'
 gem 'has_scope'
 gem 'paperclip', '~> 5.0.0'
 gem 'jquery-fileupload-rails'
+gem 'paper_trail'
 
 group :development do
   gem 'listen', '~> 3.0.5'

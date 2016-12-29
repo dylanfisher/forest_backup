@@ -2,6 +2,8 @@ class Page < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  has_paper_trail
+
   enum status: {
     published: 1,
     drafted: 2,
@@ -14,6 +16,7 @@ class Page < ApplicationRecord
   scope :by_title, -> (orderer = :asc) { order(title: orderer) }
   scope :by_slug, -> (orderer = :asc) { order(slug: orderer) }
   scope :by_created_at, -> (orderer = :desc) { order(created_at: orderer) }
+  scope :by_updated_at, -> (orderer = :desc) { order(updated_at: orderer) }
   scope :by_status, -> (status) { where(status: status) }
   scope :search, -> (query) {
     where(self.column_names.reject{ |x|

@@ -16,7 +16,8 @@
         <th><%= table_sorter title: 'Slug', path: :pages_path, scope: :by_slug, default_order: :asc %></th>
         <th>Description</th>
         <th><%= table_sorter title: 'Created&nbsp;at'.html_safe, path: :pages_path, scope: :by_created_at, default_order: :desc %></th>
-        <th colspan="3"></th>
+        <th><%= table_sorter title: 'Updated&nbsp;at'.html_safe, path: :pages_path, scope: :by_updated_at, default_order: :desc %></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
 
@@ -29,7 +30,9 @@
           <td><%= page.slug %></td>
           <td><%= page.description %></td>
           <td><%= page.created_at.to_formatted_s(:short) %></td>
+          <td><%= page.updated_at.to_formatted_s(:short) %></td>
           <td width="1"><%= link_to 'Show', page, class: 'btn btn-xs btn-primary', role: 'button' %></td>
+          <td width="1"><%= link_to 'Versions', page_versions_path(page), class: 'btn btn-xs btn-info', role: 'button' %></td>
           <td width="1"><%= link_to 'Edit', edit_page_path(page), class: 'btn btn-xs btn-info', role: 'button' %></td>
           <td width="1"><%= link_to 'Destroy', page, method: :delete, class: 'btn btn-xs btn-danger', role: 'button', data: { confirm: 'Are you sure?' } %></td>
         </tr>

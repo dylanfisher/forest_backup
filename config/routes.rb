@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     end
     resources :menus, concerns: :paginatable
     resources :pages, concerns: :paginatable
+    get 'pages/:id/versions', to: 'pages#versions', as: 'page_versions'
+    get 'pages/:id/versions/:version_id', to: 'pages#version', as: 'page_version'
+    get 'pages/:id/versions/:version_id/restore', to: 'pages#restore', as: 'restore_page_version'
     resources :settings
     resources :users
     resources :user_groups

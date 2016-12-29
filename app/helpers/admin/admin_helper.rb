@@ -19,7 +19,9 @@ module Admin::AdminHelper
   end
 
   def admin_navbar_class
-    if @page && !@page.published?
+    if @version
+      'bg-danger'
+    elsif @page && !@page.published?
       'bg-warning'
     end
   end

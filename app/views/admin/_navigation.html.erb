@@ -30,10 +30,20 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if @version %>
+          <li><%= link_to 'Restore', restore_page_version_path(@page, @version), title: 'Restore this version', role: 'button', data: { confirm: 'Are you sure you want to restore this version to the current version?' } %></li>
+          <li>
+            <p class="navbar-text">
+              <%= content_tag :span, "Version #{@version.id}", class: 'badge', title: 'Page Version' %>
+            </p>
+          </li>
+        <% end %>
         <% if @page %>
-          <p class="navbar-text">
-            <%= content_tag :span, t(@page.status, scope: [:page, :status]), class: 'badge', title: 'Page Status' %>
-          </p>
+          <li>
+            <p class="navbar-text">
+              <%= content_tag :span, t(@page.status, scope: [:page, :status]), class: 'badge', title: 'Page Status' %>
+            </p>
+          </li>
         <% end %>
         <li><%= link_to 'Settings', settings_path %></li>
         <li class="dropdown">

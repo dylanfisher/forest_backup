@@ -1,6 +1,17 @@
 class PagePolicy < ApplicationPolicy
   def show?
-    scope.where(:id => record.id).exists? &&
-    ( record.published? || edit? )
+    record.published? || edit?
+  end
+
+  def versions?
+    index?
+  end
+
+  def version?
+    edit?
+  end
+
+  def restore?
+    edit?
   end
 end
