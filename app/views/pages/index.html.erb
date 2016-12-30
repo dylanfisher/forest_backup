@@ -15,6 +15,7 @@
         <th><%= table_sorter title: 'Title', path: :pages_path, scope: :by_title, default_order: :asc %></th>
         <th><%= table_sorter title: 'Slug', path: :pages_path, scope: :by_slug, default_order: :asc %></th>
         <th>Description</th>
+        <th>Author</th>
         <th><%= table_sorter title: 'Created&nbsp;at'.html_safe, path: :pages_path, scope: :by_created_at, default_order: :desc %></th>
         <th><%= table_sorter title: 'Updated&nbsp;at'.html_safe, path: :pages_path, scope: :by_updated_at, default_order: :desc %></th>
         <th colspan="4"></th>
@@ -29,6 +30,7 @@
           <td><%= page.title %></td>
           <td><%= page.slug %></td>
           <td><%= page.description %></td>
+          <td><%= User.find(page.versions.last&.version_author)&.display_name if page.versions.last&.version_author %></td>
           <td><%= page.created_at.to_formatted_s(:short) %></td>
           <td><%= page.updated_at.to_formatted_s(:short) %></td>
           <td width="1"><%= link_to 'Show', page, class: 'btn btn-xs btn-primary', role: 'button' %></td>

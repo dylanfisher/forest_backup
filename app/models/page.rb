@@ -12,6 +12,9 @@ class Page < ApplicationRecord
     hidden: 5
   }
 
+  has_one :current_version, -> { reorder(created_at: :desc, id: :desc) }, class_name: "PaperTrail::Version", foreign_key: 'item_id'
+  has_one :current_published_version, -> { reorder(created_at: :desc, id: :desc).where_object(status: 1) }, class_name: "PaperTrail::Version", foreign_key: 'item_id'
+
   scope :by_id, -> (orderer = :desc) { order(id: orderer) }
   scope :by_title, -> (orderer = :asc) { order(title: orderer) }
   scope :by_slug, -> (orderer = :asc) { order(slug: orderer) }

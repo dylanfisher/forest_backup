@@ -16,7 +16,7 @@
         <h1>Media Library <span class="badge"><%= number_with_delimiter @media_items.total_count %></span></h1>
       </div>
       <div class="col-sm-4 text-right">
-        <%= link_to 'New Media Item', new_media_item_path, class: 'btn btn-success' %>
+        <%= link_to 'New Media Item', new_media_item_path, class: 'btn btn-success', title: 'Drag and drop media items anwhere on this page to upload multiple.' %>
       </div>
       <div class="admin-header__body col-sm-12">
         <%= link_to media_items_path(layout: :list), class: 'btn btn-link btn-md' do %>

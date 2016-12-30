@@ -56,4 +56,4 @@ Rails.application.configure do
 end
 
 Paperclip.options[:command_path] = '/usr/local/bin/'
-Marginalia::Comment.components = [:controller, :action, :line]
+# Marginalia::Comment.components = [:controller, :action, :line]
