@@ -16,6 +16,7 @@
 //= require jquery-fileupload/basic-plus
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require cocoon
 //= require_tree ./admin/vendor
 //= require main
 //= require_tree ./admin/partials

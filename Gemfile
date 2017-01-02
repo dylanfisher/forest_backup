@@ -31,6 +31,7 @@ gem 'has_scope'
 gem 'paperclip', '~> 5.0.0'
 gem 'jquery-fileupload-rails'
 gem 'paper_trail'
+gem 'cocoon'
 
 group :development do
   gem 'listen', '~> 3.0.5'
