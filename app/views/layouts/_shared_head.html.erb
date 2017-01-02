@@ -10,7 +10,9 @@
 
 <!-- Facebook meta tags -->
 <meta property="og:url" content="<%= request.original_url %>">
-<!-- <meta property="og:image" content="{{imageUrl}}"> -->
+<% if page_featured_image %>
+  <meta property="og:image" content="<%= page_featured_image %>">
+<% end %>
 <meta property="og:description" content="<%= page_description %>">
 <meta property="og:title" content="<%= page_title %>">
 <meta property="og:site_name" content="<%= site_title %>">
@@ -19,11 +21,15 @@
 <!-- Google meta tags -->
 <meta itemprop="name" content="<%= page_title %>">
 <meta itemprop="description" content="<%= page_description %>">
-<!-- <meta itemprop="image" content="{{imageUrl}}"> -->
+<% if page_featured_image %>
+  <meta itemprop="image" content="<%= page_featured_image %>">
+<% end %>
 
 <!-- Twitter meta tags -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:url" content="<%= request.original_url %>">
 <meta name="twitter:title" content="<%= page_title %>">
 <meta name="twitter:description" content="<%= page_description %>">
-<!-- <meta name="twitter:image" content="{{imageUrl}}"> -->
+<% if page_featured_image %>
+  <meta name="twitter:image" content="<%= page_featured_image %>">
+<% end %>

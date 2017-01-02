@@ -19,7 +19,7 @@
               </div>
               <div class="col-sm-6">
                 <%# TODO: better media item chooser %>
-                <%= f.association :featured_image, collection: MediaItem.images %>
+                <%= f.association :featured_image, collection: MediaItem.images, hint: 'The featured image is displayed when people share this page on social media, and may also be used in the page template.' %>
                 <%= image_tag @page.featured_image.attachment.url(:medium), class: 'img-rounded page__featured-image' if @page.featured_image.present? %>
               </div>
             </div>

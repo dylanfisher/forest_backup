@@ -34,7 +34,11 @@ class MediaItem < ApplicationRecord
       'delete_url': media_item_path(id: id),
       'delete_type': 'DELETE'
     }
-    end
+  end
+
+  def large_attachment_url
+    attachment.url(:large)
+  end
 
   private
 

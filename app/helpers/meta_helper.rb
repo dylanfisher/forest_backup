@@ -11,8 +11,16 @@ module MetaHelper
     [content_for(:page_description) || @page_description, site_description].reject(&:blank?).first.html_safe
   end
 
+  def page_featured_image
+    [content_for(:page_featured_image), site_featured_image].reject(&:blank?).first
+  end
+
   def site_description
     Setting.for('description')&.value || default_site_description
+  end
+
+  def site_featured_image
+    Setting.for('featured-image')&.value
   end
 
   private
