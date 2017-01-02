@@ -1,6 +1,16 @@
-<h1>Editing Page</h1>
+<div class="admin-header">
+  <div id="notice"><%= notice %></div>
+  <div class="well">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>Editing Page <span class="badge"><%= @page.id %></span></h1>
+        <%= link_to 'Show', @page %> |
+        <%= link_to 'Back', pages_path %>
+      </div>
+      <div class="col-sm-4 text-right">
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render 'form', page: @page %>
-
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>

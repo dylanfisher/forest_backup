@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = apply_scopes(Page).by_title.page params[:page]
+    @pages = apply_scopes(Page.includes(:versions)).by_title.page params[:page]
     authorize @pages
   end
 
@@ -92,7 +92,7 @@ class PagesController < ApplicationController
     authorize @page
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to pages_path, notice: 'Page was successfully updated.' }
+        format.html { redirect_to edit_page_path(@page), notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
@@ -129,6 +129,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :slug, :description, :status, :version_id)
+      params.require(:page).permit(:title, :slug, :description, :status, :version_id, :featured_image_id, :media_item_ids)
     end
 end

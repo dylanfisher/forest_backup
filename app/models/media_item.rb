@@ -8,6 +8,8 @@ class MediaItem < ApplicationRecord
   validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\z/
   validates_attachment_presence :attachment
 
+  belongs_to :attachable, polymorphic: true
+
   scope :by_id, -> (orderer = :desc) { order(id: orderer) }
   scope :by_date, -> (date) {
     begin
@@ -17,6 +19,7 @@ class MediaItem < ApplicationRecord
       date = nil
     end
   }
+  scope :images, -> { where('attachment_content_type LIKE ?', '%image%') }
 
   def self.dates_for_filter
     self.grouped_by_year_month.collect { |x| [x.created_at.strftime('%B %Y'), x.created_at.strftime('%d-%m-%Y')] }
